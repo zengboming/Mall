@@ -3,7 +3,7 @@
 	if(!loginForm){
 		return;
 	}
-	var userName = loginForm['userName'];
+	var account = loginForm['userName'];
 	var password = loginForm['password'];
 	var isSubmiting = false;
 	var loading = new Loading();
@@ -11,16 +11,17 @@
 		init:function(){
 			loginForm.addEventListener('submit',function(e){
 				if(!isSubmiting && this.check()){
-					var value1 = userName.value;
+					var value1 = account.value;
 					var value2 = md5(password.value);
 					isSubmiting = true;
 					loading.show();
 					ajax({
-						data:{userName:value1,password:value2},
-						url:'/api/login',
+						data:{account:value1,password:value2},
+						url:'/spring-mall/mall/login',
 						success:function(result){
 							loading.hide();
-							location.href = '/';
+							location.href = './index.html';
+							document.getElementById("name").innerHTML = value1;
 						},
 						error:function(message){
 							loading.result(message||'登录失败');
@@ -29,7 +30,7 @@
 					});
 				}
 			}.bind(this),false);
-			[userName,password].forEach(function(item){
+			[account,password].forEach(function(item){
 				item.addEventListener('input',function(e){
 					item.classList.remove('z-err');
 				}.bind(this),false);
@@ -38,7 +39,7 @@
 		check:function(){
 			var result = true;
 			[
-				[userName,function(value){return value == ''}],
+				[account,function(value){return value == ''}],
 				[password,function(value){return value == ''}]
 			].forEach(function(item){
 				var value = item[0].value.trim();

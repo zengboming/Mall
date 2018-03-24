@@ -39,6 +39,7 @@ public class UserDao implements IUserDao {
 						User user = new User();
 						user.setName(rs.getString("name"));
 						user.setPassword(rs.getString("password"));
+						user.setType(rs.getString("type"));
 						return user;
 					}	
 		});

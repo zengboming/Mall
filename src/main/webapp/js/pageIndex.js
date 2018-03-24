@@ -23,7 +23,7 @@
 					layer.hide();
 					loading.show();
 					ajax({
-						url:'/api/delete',
+						url:'/spring-mall/mall/delete',
 						data:{id:id},
 						success:function(json){
 							this.delItemNode(id);

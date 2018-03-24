@@ -72,10 +72,10 @@ public class GoodsDao implements IGoodsDao{
 	@Override
 	public int insertGoods(Goods goods) {
 		return this.jdbcTemplate.update("insert into "
-				+ "goods (title, img, price, abstract, content, number, buy)"
-				+ "values (?, ?, ?, ?, ?, ?, ?)", 
+				+ "goods (title, img, price, abstract, content, number)"
+				+ "values (?, ?, ?, ?, ?, ?)", 
 				goods.getTitle(), goods.getImg(), goods.getPrice(), goods.getAbstr(),
-				goods.getContent(), goods.getNumber(), goods.getBuy());
+				goods.getContent(), goods.getNumber());
 	}
 
 	@Override
@@ -85,10 +85,11 @@ public class GoodsDao implements IGoodsDao{
 
 	@Override
 	public int updateGoods(Goods goods) {
-		return this.jdbcTemplate.update("update goods set title = ? abstract = ?"
-				+ " img = ? content = ? price = ? where id = ?", 
+		return this.jdbcTemplate.update("update goods set title = ?, abstract = ?,"
+				+ " img = ?, content = ?, price = ?, number = ? where id = ?", 
 				goods.getTitle(), goods.getAbstr(), goods.getImg(), 
-				goods.getContent(), goods.getPrice(), goods.getId());
+				goods.getContent(), goods.getPrice(), goods.getNumber(), 
+				goods.getId());
 	}
 
 	@Override
