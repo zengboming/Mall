@@ -31,4 +31,9 @@ public class BuyService implements IBuyService {
 		return buyDao.getPriceSum();
 	}
 
+	@Override
+	public Buy getGoodsById(int id) {
+		return buyDao.getBuyById(id);
+	}
+
 }

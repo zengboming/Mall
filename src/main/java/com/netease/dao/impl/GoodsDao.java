@@ -86,10 +86,9 @@ public class GoodsDao implements IGoodsDao{
 	@Override
 	public int updateGoods(Goods goods) {
 		return this.jdbcTemplate.update("update goods set title = ?, abstract = ?,"
-				+ " img = ?, content = ?, price = ?, number = ? where id = ?", 
+				+ " img = ?, content = ?, price = ? where id = ?", 
 				goods.getTitle(), goods.getAbstr(), goods.getImg(), 
-				goods.getContent(), goods.getPrice(), goods.getNumber(), 
-				goods.getId());
+				goods.getContent(), goods.getPrice(), goods.getId());
 	}
 
 	@Override

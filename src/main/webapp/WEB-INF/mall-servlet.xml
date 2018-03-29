@@ -11,6 +11,7 @@
 
 	<context:component-scan base-package="com.netease.controller" />
 	<mvc:annotation-driven />
+	<mvc:resources mapping="/resources/**" location="/public-resources/"/>
 
 	<bean id="freemarkerConfig"
 		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">

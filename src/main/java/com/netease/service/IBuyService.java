@@ -8,6 +8,8 @@ public interface IBuyService {
 
 	List<Buy> getGoodsList();
 	
+	Buy getGoodsById(int id);
+	
 	boolean addGoods(Buy buy);
 	
 	int getPriceSum();

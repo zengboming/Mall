@@ -33,7 +33,7 @@ private JdbcTemplate jdbcTemplate;
 					@Override
 					public Cart mapRow(ResultSet rs, int rowNum) throws SQLException {
 						Cart cart = new Cart();
-						cart.setId(rs.getInt("id"));
+						cart.setId(rs.getInt("goods_id"));
 						cart.setNumber(rs.getInt("number"));
 						cart.setPrice(rs.getString("price"));
 						cart.setTitle(rs.getString("title"));

@@ -2,6 +2,7 @@ package com.netease.controller;
 
 import java.io.IOException;
 import java.io.OutputStream;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,10 +15,21 @@ import com.netease.meta.User;
 import com.netease.service.IUserService;
 
 @Controller
-public class LoginController {
+public class LoginController{
+
+	private static String userName = "";
+	private static String userType = ""; 
 
 	@Autowired
 	public IUserService userService;
+	
+	public static String getUserName() {
+		return userName;
+	}
+
+	public static String getUserType() {
+		return userType;
+	}
 	
 	@RequestMapping(value = "/header")
 	public void getUser(@RequestBody String body, HttpServletResponse response) {
@@ -43,15 +55,33 @@ public class LoginController {
 		String password = request.getParameter("password");
 		//password = userService.MD5Tools(userService.MD5Tools(password));
 		User user = userService.getUser(account, password);
-		Boolean result = user != null ? true : false;
 		try {
 			JSONObject param = new JSONObject();
-			param.put("code", 200);
-			param.put("result", result);
-			response.getWriter().write(param.toJSONString());
+			if (user != null) {
+				param.put("code", 200);
+				param.put("result", "1");
+				userName = user.getName();
+				userType = user.getType();
+				response.getWriter().write(param.toJSONString());
+			} else {
+				param.put("code", 404);
+				param.put("result", "0");
+				response.getWriter().write(param.toJSONString());
+			}
 		} catch (IOException e) {
-			 //TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	@RequestMapping(value = "/logout")
+	public String logout() {
+		userName = "";
+		userType = "";
+		return "login";
+	}
+	
+	@RequestMapping(value = "/goLogin")
+	public String goLogin() {
+		return "login";
 	}
 }

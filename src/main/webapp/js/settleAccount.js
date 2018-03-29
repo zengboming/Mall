@@ -21,8 +21,7 @@
 		"<td>" + products[i].title  + "</td>"+
 		"<td>" + 
 		"<span class=\"lessNum\">"+ "-" + "</span>" +
-		"<span class=\"totalNum\" id=\"allNum\">" + products[i].num + "</span>" +
-		"<span id=\"thisId\">" + products[i].id + "</span>" +
+		"<span class=\"totalNum\" id=\"allNum\">" + products[i].number + "</span>" +
 		"<span class=\"moreNum\">"+ "+" + "</span>" + "</td>" +
 		"<td>" + products[i].price + "</td>" +
 		"</tr>";
@@ -59,7 +58,7 @@
 	var layer = new Layer();
 	$('Account').onclick = function(e){
 		var newProducts = products.map(function(arr){
-			return {'id':arr.id,'number':arr.num};
+			return {'id':arr.id,'number':arr.number};
 		});
 		console.log(newProducts);
 		var ele = e.target;
@@ -77,7 +76,8 @@
 				                if(status >= 200 && status < 300 || status == 304){
 				                	var json = JSON.parse(xhr.responseText);
 				                	if(json && json.code == 200){
-				                		loading.result('购买成功',function(){location.href = './account.html';});
+				                		loading.result('购买成功',function(){
+				                		location.href = '/spring-mall/mall/account';});
 				                		util.deleteCookie(name);
 				                	}else{
 				                		alert(json.message);
@@ -95,6 +95,6 @@
 			return;
 	};
 	$('back').onclick = function(){
-		location.href = window.history.back();
+		location.href = "/spring-mall/mall/index?type=0";
 	}
 })(window,document);

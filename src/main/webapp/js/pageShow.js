@@ -33,10 +33,10 @@
 		var title = ele && ele.dataset.title;
 		var price = ele && ele.dataset.price;
 		var num = $('allNum').innerHTML;
-		var productDetail = {'id':id,'price':price,'title':title,'num':num};
+		var productDetail = {'id':id,'price':price,'title':title,'number':num};
 		var name = 'products';
 		var productList1 = new Array;
-		var productList = util.getCookie(name);
+		var productList = JSON.parse(util.getCookie(name));
 		if(productList == "" || productList == null){
 			productList1.push(productDetail);
 			util.setCookie(name,productList1);

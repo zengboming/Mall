@@ -43,14 +43,35 @@ public class BuyDao implements IBuyDao{
 				});
 		return list;
 	}
+	
+	@Override
+	public Buy getBuyById(int id) {
+		Buy buy =  this.jdbcTemplate.queryForObject("select * from buy where id = ?",
+				new Object[]{id},
+				new RowMapper<Buy>() {
+
+					@Override
+					public Buy mapRow(ResultSet rs, int rowNum) throws SQLException {
+						Buy buy = new Buy();
+						buy.setId(rs.getInt("id"));
+						buy.setImg(rs.getString("img"));
+						buy.setNumber(rs.getInt("number"));
+						buy.setPrice(rs.getString("price"));
+						buy.setTime(rs.getString("time"));
+						buy.setTitle(rs.getString("title"));
+						return buy;
+					}
+				});
+		return buy;
+	}
 
 	@Override
 	public int insertBuy(Buy buy) {
 		return this.jdbcTemplate.update("insert into "
-				+ "buy (title, img, price, number, time)"
-				+ "values (?, ?, ?, ?, ?)", 
-				buy.getTitle(), buy.getImg(), buy.getPrice(),
-				buy.getNumber(), buy.getTime());
+				+ "buy (id,title, img, price, number, time)"
+				+ "values (?,?, ?, ?, ?, ?)", 
+				buy.getId(), buy.getTitle(), buy.getImg(), 
+				buy.getPrice(), buy.getNumber(), buy.getTime());
 	}
 
 	@Override

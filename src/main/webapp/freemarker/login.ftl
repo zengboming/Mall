@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
-<#include "/include/head.ftl">
+<#include "/head.ftl">
 <body>
-<#include "/include/support.ftl">
-<#include "/include/header.ftl">
+<#include "/support.ftl">
+<#include "/header.ftl">
 <form class="m-form m-form-ht n-login" id="loginForm" onsubmit="return false;" autocomplete="off">
     <div class="fmitem">
         <label class="fmlab">用户名：</label>
@@ -23,9 +23,9 @@
         </div>
     </div>
 </form>
-<#include "/include/footer.ftl">
-<script type="text/javascript" src="/js/md5.js"></script>
-<script type="text/javascript" src="/js/global.js"></script>
-<script type="text/javascript" src="/js/pageLogin.js"></script>
+<#include "/footer.ftl">
+<script type="text/javascript" src="../js/md5.js"></script>
+<script type="text/javascript" src="../js/global.js"></script>
+<script type="text/javascript" src="../js/pageLogin.js"></script>
 </body>
 </html>

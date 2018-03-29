@@ -20,7 +20,7 @@
 						url:'/spring-mall/mall/login',
 						success:function(result){
 							loading.hide();
-							location.href = './index.html';
+							window.location.href = '/spring-mall/mall/index?type=0';
 							document.getElementById("name").innerHTML = value1;
 						},
 						error:function(message){

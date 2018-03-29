@@ -38,7 +38,7 @@
 		},
 		modifyTwo:function(array,id,num){
 			var item = this.findOne(array,id);
-			item.num = parseInt(item.num) + parseInt(num);
+			item.number = parseInt(item.number) + parseInt(num);
 		},
 		getCookie:function(name){
 			var result = document.cookie.match(new RegExp(name + '=([^;]+)'));
